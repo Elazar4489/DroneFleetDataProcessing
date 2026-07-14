@@ -63,6 +63,17 @@
 ### CreateReport
 הפקת דוח מסכם לפי הניתוחים שהתקבלו מPerformingStatisticalAnalyses
 
+###Namespace
+Drone = DroneSystem.Models 
+Enums = DroneSystem.Enums
+Reception = DroneSystem.Data.Reception
+Validator = DroneSystem.Validation 
+Exaption = DroneSystem.Exceptions 
+ValidatorExaption = DroneSystem.Exceptions.Validation 
+CreateNewJson = DroneSystem.Data.Persistence
+PerformingStatisticalAnalyses = DroneSystem.Analytics 
+CreateReport = DroneSystem.Reporting
+
 
 ## פירוק הבעיה לרכיבים 
 vali
