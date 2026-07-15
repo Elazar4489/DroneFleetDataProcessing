@@ -1,5 +1,5 @@
 ﻿using DroneSystem.Models;
-using DroneSystem.ValidationExaption;
+using DroneSystem.Exceptions.Validation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,64 +8,64 @@ using System.Text.RegularExpressions;
 namespace DroneSystem.Validation
 {
 
-    class Validator
+
+    public class ValidatorDrone
     {
+        private readonly List<IDroneValidationRule> _allRules;
         public List<Drone> Drones { get; set; }
-        public Validator(List<Drone> drones)
+        public ValidatorDrone(List<Drone> drones)
         {
             Drones = drones;
-        }
-
-        public bool UniquenessCheck<T, S>(T item, S seen) where S : HashSet<T>
-        {
-            return !seen.Add(item);
-        }
-
-        public bool RangeCheck(int min, int max, int num)
-        {
-            if (num > max || num < min)
+            _allRules = new List<IDroneValidationRule>
             {
-                return false;
+                new IdValidator(),
+                new serialNumberValidator(),
+                new modelValidator(),
+                new categoryValidator(),
+                new base_locationValidator(),
+                new flightHoursValidator(),
+                new batteryHealthValidator(),
+                new maxRangeKmValidator(),
+                new missionsCompletedValidator(),
+                new statusValidator(),
+                new correctnessStatusValidator()
+            };
+        }
+        public bool IsValid(Drone drone)
+        {
+            foreach (var rule in _allRules)
+            {
+                if (!rule.IValidate(drone))
+                {
+                    return false;
+                }
             }
             return true;
         }
-        public bool RangeDoubleCheck(double min, double max, double num)
+        public List<Drone> Validate()
         {
-            return num <= max || num >= min;
+            List<Drone> ValidDrones = new List<Drone>();
+            foreach (Drone drone in Drones)
+            {
+                try
+                {
+                    if (IsValid(drone))
+                    {
+                        ValidDrones.Add(drone);
+                    }
+                }
+                catch (IdExaption ex) { Console.WriteLine(ex.Message + drone.id);}
+                catch (serialNumberExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (modelExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (categoryExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (base_locationExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (flightHoursExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (batteryHealthExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (maxRangeKmExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (missionsCompletedExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (statusExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+            }
+            return ValidDrones;
         }
-
-        public bool EnumCheck<TEnum>(string item, out TEnum theEnum) where TEnum:struct,Enum
-        {
-            return Enum.TryParse(item, true, out theEnum);
-        }
-
-
-
-        //public bool ValidateId(Drone drone)
-        //{
-        //    var seenIds = new HashSet<int>();
-        //    if (!seenIds.Add(drone.id))
-        //    {
-        //        throw new IdExaption();
-        //    }
-        //    else if (drone.id <= 0)
-        //    {
-        //        throw new IdExaption();
-        //    }
-        //    else return true;
-
-        //}
-        //public bool ValidateSerialNumber(Drone drone)
-        //{
-        //    var seenSerialNumber = new HashSet<string>();
-        //    string pattern = @"^DR-\d{4}$";
-        //    if (string.IsNullOrEmpty(drone.serialNumber)) throw new serialNumberExaption();
-        //    if (!seenSerialNumber.Add(drone.serialNumber)) throw new serialNumberExaption();
-        //    if (!Regex.IsMatch(drone.serialNumber, pattern)) throw new serialNumberExaption();
-
-        //    else return true;
-        //}
     }
 }
-//|| 
-                    //|| drone.serialNumber[] != "D")

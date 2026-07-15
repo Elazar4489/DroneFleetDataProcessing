@@ -2,36 +2,40 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DroneFleetDataProcessing.validatorFolder
+namespace DroneSystem.Exceptions.Validation
 {
-    class IdExaption:Exception
+     class DroneExaption : Exception
+    {
+        public DroneExaption() : base() { }
+    }
+    class IdExaption: DroneExaption
     {
     }
-    class serialNumberExaption : Exception
+    class serialNumberExaption : DroneExaption
     {
     }
-    class modelExaption : Exception
+    class modelExaption : DroneExaption
     {
     }
-    class categoryExaption : Exception
+    class categoryExaption : DroneExaption
     {
     }
-    class base_locationExaption : Exception
+    class base_locationExaption : DroneExaption
     {
     }
-    class flightHoursExaption : Exception
+    class flightHoursExaption : DroneExaption
     {
     }
-    class batteryHealthExaption : Exception
+    class batteryHealthExaption : DroneExaption
     {
     }
-    class maxRangeKmExaption : Exception
+    class maxRangeKmExaption : DroneExaption
     {
     }
-    class missionsCompletedExaption : Exception
+    class missionsCompletedExaption : DroneExaption
     {
     }
-    class statusExaption : Exception
+    class statusExaption : DroneExaption
     {
     }
 }

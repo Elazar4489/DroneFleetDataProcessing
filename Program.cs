@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DroneSystem.Models;
 using DroneSystem.Reception;
+using DroneSystem.Validation;
+using System;
 namespace DroneSystem.program
 {
     public class program
@@ -14,11 +16,10 @@ namespace DroneSystem.program
             var n = new ReceptionDrone(myFilePath);
             var h = n.loadJson();
             Console.WriteLine(h.Count);
-            foreach (var r in h)
-            {
-                // נדפיס רק את ה-ID ואת ה-Model כדי לוודא שזה עובד
-                Console.WriteLine($"Found Drone: {r.id} - Model: {r.model} mnmn         {r.base_location}");
-            }
+            var V = new ValidatorDrone(h);
+            List<Drone> newList = V.Validate();
+            Console.WriteLine(newList.Count);
+           
 
         }
     }
