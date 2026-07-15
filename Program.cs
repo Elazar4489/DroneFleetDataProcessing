@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DroneSystem.Data.Persistence;
+using DroneSystem.Interfaces;
 using DroneSystem.Reception;
+using DroneSystem.Data.Persistence;
+using System;
 namespace DroneSystem.program
 {
     public class program
@@ -10,15 +13,21 @@ namespace DroneSystem.program
             string baseDirectory = Directory.GetCurrentDirectory();
             string myFilePath = Path.Combine(baseDirectory, "input", "raw", "drones_raw.json");
 
-      
-            var n = new ReceptionDrone(myFilePath);
-            var h = n.loadJson();
-            Console.WriteLine(h.Count);
+
+            IDataSource n = new ReceptionDrone(myFilePath);
+            var h = n.LoadData(); ;
+            Console.WriteLine(h.Count());
             foreach (var r in h)
             {
-                // נדפיס רק את ה-ID ואת ה-Model כדי לוודא שזה עובד
-                Console.WriteLine($"Found Drone: {r.id} - Model: {r.model} mnmn         {r.base_location}");
+                Console.WriteLine($"Found Drone: {r.id} - Model: {r.model} mnmn {r.base_location}");
             }
+
+            var validDrones = 
+
+
+
+            IPersistence saver = new CreateNewJson();
+            saver.SaveData(validDrones, "drones_clean.json");
 
         }
     }
