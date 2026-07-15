@@ -1,13 +1,15 @@
-﻿using DroneSystem.Models;
+﻿using DroneSystem.Interfaces;
+using DroneSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using DroneSystem.Interfaces;
 namespace DroneSystem.Reception
 {
-    public class ReceptionDrone
+    public class ReceptionDrone : IDataSource
     {
         public List<Drone> drones = new List<Drone>();
 
@@ -18,7 +20,7 @@ namespace DroneSystem.Reception
             path = Path;
 
         }
-        public List<Drone> loadJson()
+        public IEnumerable<Drone> LoadData()
         {
             try
             {
