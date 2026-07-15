@@ -64,19 +64,31 @@
 הפקת דוח מסכם לפי הניתוחים שהתקבלו מPerformingStatisticalAnalyses
 
 ###Namespace
-Drone = DroneSystem.Models 
-Enums = DroneSystem.Enums
-Reception = DroneSystem.Data.Reception
-Validator = DroneSystem.Validation 
-Exaption = DroneSystem.Exceptions 
-ValidatorExaption = DroneSystem.Exceptions.Validation 
-CreateNewJson = DroneSystem.Data.Persistence
-PerformingStatisticalAnalyses = DroneSystem.Analytics 
-CreateReport = DroneSystem.Reporting
+//Drone = DroneSystem.Models 
+
+//Interfase = DroneSystem.Interfaces
+
+//Enums = DroneSystem.Enums
+
+//Reception = DroneSystem.Data.Reception
+
+//Validator = DroneSystem.Validation 
+
+//Exaption = DroneSystem.Exceptions 
+
+//ValidatorExaption = DroneSystem.Exceptions.Validation 
+
+//CreateNewJson = DroneSystem.Data.Persistence
+
+//PerformingStatisticalAnalyses = DroneSystem.Analytics 
+
+//CreateReport = DroneSystem.Reporting
 
 
 ## פירוק הבעיה לרכיבים 
-vali
+
+* **IDataSource (Interface):** מהווה את שכבת ההפשטה לקליטת הנתונים. הממשק מגדיר את המתודה `LoadData()` שכל מקור נתונים עתידי (JSON, SQL, API) חייב לממש. 
+* **תקשורת:** שאר רכיבי המערכת תלויים בממשק `IDataSource` ולא במימוש הספציפי שלו, מה שמאפשר הפרדת רשויות מוחלטת (Decoupling).
 
 ## ארכיטקטורה 
 
@@ -88,6 +100,13 @@ vali
 
 ## תכנון חלוקת עבודה 
 
-בשלב הראשון:
+בשלב הראשון###:
 אלטמן - Drone
 קפלין - Enums
+
+###שלב שני ###
+אלטמן - Validetor 
+קרפלין - loadDrone
+
+###שלב שלישי###
+
