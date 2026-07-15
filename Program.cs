@@ -26,7 +26,7 @@ namespace DroneSystem.program
 
 
 
-            IPersistence saver = new DroneJsonSaver();
+            IPersistence saver = new CreateNewJson();
             saver.SaveData(validDrones, "drones_clean.json");
 
         }

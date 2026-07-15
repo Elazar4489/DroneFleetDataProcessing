@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace DroneSystem.Data.Persistence
 {
 
-    public class DroneJsonSaver : IPersistence
+    public class CreateNewJson : IPersistence
     {
         public void SaveData(IEnumerable<Drone> drones, string fileName)
         {
