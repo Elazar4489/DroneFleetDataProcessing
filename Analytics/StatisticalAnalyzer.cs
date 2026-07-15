@@ -19,5 +19,10 @@ namespace DroneSystem.Analytics
         {
             return cleanDrones.Select(r => r.model).Distinct();
         }
+
+
+
+
+
     }
 }
