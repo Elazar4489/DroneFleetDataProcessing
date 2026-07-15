@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DroneSystem.Models
 {
-    internal class Drone
+    public class Drone
     {
         public int id { get; set; }
         public string serialNumber { get; set; }
@@ -16,19 +16,10 @@ namespace DroneSystem.Models
         public double maxRangeKm { get; set; }
         public int missionsCompleted { get; set; }
         public string status { get; set; }
-        public Drone(int Iid, string IserialNumber, string Imodel, string Icategory, string Ibase_location, 
-            double IflightHours, int IbatteryHealth, double ImaxRangeKm, int ImissionsCompleted, string Istatus)
+  
+        public override string ToString()
         {
-            id = Iid;
-            serialNumber = IserialNumber;
-            model = Imodel;
-            category = Icategory;
-            base_location = Ibase_location;
-            flightHours = IflightHours;
-            batteryHealth = IbatteryHealth;
-            maxRangeKm = ImaxRangeKm;
-            missionsCompleted = ImissionsCompleted;
-            status = Istatus;
+            return $"Drone ID: {id}, Serial: {serialNumber}, Model: {model}, Status: {status}";
         }
     }
 }
