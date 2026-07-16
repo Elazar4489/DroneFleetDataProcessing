@@ -1,5 +1,5 @@
-﻿using DroneSystem.Models;
-using DroneSystem.Reporting;
+﻿using DroneSystem.src.Models;
+using DroneSystem.src.Reporting;
 using System;
 namespace DroneSystem.src.Analytics
 {
