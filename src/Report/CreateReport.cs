@@ -1,11 +1,11 @@
-﻿using DroneSystem.Analytics;
-using DroneSystem.Interfaces;
-using DroneSystem.Models;
+﻿using DroneSystem.src.Analytics;
+using DroneSystem.src.Interfaces;
+using DroneSystem.src.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DroneSystem.Reporting
+namespace DroneSystem.src.Reporting
 {
     public class CreateReport : IPersistence
     {

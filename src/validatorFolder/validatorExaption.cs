@@ -2,40 +2,60 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DroneSystem.Exceptions.Validation
+namespace DroneSystem.src.Exceptions.Validation
 {
-     class DroneExaption : Exception
+    public class DroneException : Exception
     {
-        public DroneExaption() : base() { }
+        public DroneException(string message) : base(message) { }
     }
-    class IdExaption: DroneExaption
+
+    public class IdException : DroneException
     {
+        public IdException(string message) : base(message) { }
     }
-    class serialNumberExaption : DroneExaption
+
+    public class SerialNumberException : DroneException
     {
+        public SerialNumberException(string message) : base(message) { }
     }
-    class modelExaption : DroneExaption
+
+    public class ModelException : DroneException
     {
+        public ModelException(string message) : base(message) { }
     }
-    class categoryExaption : DroneExaption
+
+    public class CategoryException : DroneException
     {
+        public CategoryException(string message) : base(message) { }
     }
-    class base_locationExaption : DroneExaption
+
+    public class BaseLocationException : DroneException
     {
+        public BaseLocationException(string message) : base(message) { }
     }
-    class flightHoursExaption : DroneExaption
+
+    public class FlightHoursException : DroneException
     {
+        public FlightHoursException(string message) : base(message) { }
     }
-    class batteryHealthExaption : DroneExaption
+
+    public class BatteryHealthException : DroneException
     {
+        public BatteryHealthException(string message) : base(message) { }
     }
-    class maxRangeKmExaption : DroneExaption
+
+    public class MaxRangeKmException : DroneException
     {
+        public MaxRangeKmException(string message) : base(message) { }
     }
-    class missionsCompletedExaption : DroneExaption
+
+    public class MissionsCompletedException : DroneException
     {
+        public MissionsCompletedException(string message) : base(message) { }
     }
-    class statusExaption : DroneExaption
+
+    public class StatusException : DroneException
     {
+        public StatusException(string message) : base(message) { }
     }
 }

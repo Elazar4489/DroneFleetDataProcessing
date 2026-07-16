@@ -1,13 +1,13 @@
-﻿using DroneSystem.Enums;
-using DroneSystem.Exceptions.Validation;
-using DroneSystem.Models;
+﻿using DroneSystem.src.Enums;
+using DroneSystem.src.Exceptions.Validation;
+using DroneSystem.src.Models;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DroneSystem.Validation
+namespace DroneSystem.src.Validation
 {
     public interface IDroneValidationRule
     {

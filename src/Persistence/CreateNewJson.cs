@@ -1,11 +1,11 @@
-﻿using DroneSystem.Interfaces;
-using DroneSystem.Models;
+﻿using DroneSystem.src.Interfaces;
+using DroneSystem.src.Models;
 using System;
 using System.IO.Enumeration;
 using System.IO;
 using System.Text.Json;
 
-namespace DroneSystem.Data.Persistence
+namespace DroneSystem.src.Persistence
 {
 
     public class CreateNewJson : IPersistence

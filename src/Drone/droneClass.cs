@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DroneSystem.Models
+namespace DroneSystem.src.Models
 {
     public class Drone
     {

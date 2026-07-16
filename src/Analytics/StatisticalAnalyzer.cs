@@ -1,7 +1,7 @@
 ﻿using DroneSystem.Models;
 using DroneSystem.Reporting;
 using System;
-namespace DroneSystem.Analytics
+namespace DroneSystem.src.Analytics
 {
     public class StatisticalAnalyzer
     {       

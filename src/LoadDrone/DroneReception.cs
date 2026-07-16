@@ -1,13 +1,13 @@
-﻿using DroneSystem.Interfaces;
-using DroneSystem.Models;
+﻿using DroneSystem.src.Interfaces;
+using DroneSystem.src.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using DroneSystem.Interfaces;
-namespace DroneSystem.Reception
+using DroneSystem.src.Interfaces;
+namespace DroneSystem.src.Reception
 {
     public class ReceptionDrone : IDataSource
     {

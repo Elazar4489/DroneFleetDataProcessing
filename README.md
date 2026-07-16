@@ -64,25 +64,25 @@
 הפקת דוח מסכם לפי הניתוחים שהתקבלו מPerformingStatisticalAnalyses
 
 ###Namespace
-//Drone = DroneSystem.Models 
+//Drone = DroneSystem.src.Models 
 
-//Interfase = DroneSystem.Interfaces
+//Interfase = DroneSystem.src.Interfaces
 
-//Enums = DroneSystem.Enums
+//Enums = DroneSystem..src.Enums
 
-//Reception = DroneSystem.Data.Reception
+//Reception = DroneSystem.src.Data.Reception
 
-//Validator = DroneSystem.Validation 
+//Validator = DroneSystem.src.Validation 
 
-//Exaption = DroneSystem.Exceptions 
+//Exaption = DroneSystem.src.Exceptions 
 
-//ValidatorExaption = DroneSystem.Exceptions.Validation 
+//ValidatorExaption = DroneSystem.src.Exceptions.Validation 
 
-//CreateNewJson = DroneSystem.Data.Persistence
+//CreateNewJson = DroneSystem.src.Persistence
 
-//PerformingStatisticalAnalyses = DroneSystem.Analytics 
+//PerformingStatisticalAnalyses = DroneSystem.src.Analytics 
 
-//CreateReport = DroneSystem.Reporting
+//CreateReport = DroneSystem..src.Reporting
 
 
 ## פירוק הבעיה לרכיבים 

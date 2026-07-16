@@ -1,7 +1,7 @@
 ﻿using System;
 using DroneSystem.Models;
 
-namespace DroneSystem.Interfaces
+namespace DroneSystem.src.Interfaces
 {
     public interface IPersistence
     {
