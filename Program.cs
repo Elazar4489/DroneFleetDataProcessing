@@ -16,6 +16,7 @@ namespace DroneSystem.program
             string baseDirectory = Directory.GetCurrentDirectory();
             string myFilePath = Path.Combine(baseDirectory, "input", "raw", "drones_raw.json");
 
+<<<<<<< HEAD
       
             var n = new ReceptionDrone(myFilePath);
             var h = n.loadJson();
@@ -24,6 +25,9 @@ namespace DroneSystem.program
             List<Drone> newList = V.Validate();
             Console.WriteLine(newList.Count);
            
+=======
+<<<<<<< Updated upstream
+>>>>>>> feat/statistical-analytics
 
             IDataSource n = new ReceptionDrone(myFilePath);
             var h = n.LoadData(); ;
@@ -40,6 +44,16 @@ namespace DroneSystem.program
             IPersistence saver = new CreateNewJson();
             saver.SaveData(validDrones, "drones_clean.json");
 
+=======
+      
+            var n = new ReceptionDrone(myFilePath);
+            var h = n.loadJson();
+            Console.WriteLine(h.Count);
+            var V = new ValidatorDrone(h);
+            List<Drone> newList = V.Validate();
+            Console.WriteLine(newList.Count);
+       
+>>>>>>> Stashed changes
         }
     }
 }
