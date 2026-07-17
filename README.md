@@ -72,11 +72,13 @@
 
 //Reception = DroneSystem.src.Data.Reception
 
-//Validator = DroneSystem.src.Validation 
+//Validator = DroneSystem.src.Validation.validator
+
+//ValidatorAbstractClass = DroneSystem.src.Validation.validateorAbstractClass
 
 //Exaption = DroneSystem.src.Exceptions 
 
-//ValidatorExaption = DroneSystem.src.Exceptions.Validation 
+//ValidatorExaption = DroneSystem.src.Validation.validatorExaption
 
 //CreateNewJson = DroneSystem.src.Persistence
 

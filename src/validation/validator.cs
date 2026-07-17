@@ -1,11 +1,12 @@
-﻿using DroneSystem.Models;
-using DroneSystem.Exceptions.Validation;
+﻿using DroneSystem.src.Models;
+using DroneSystem.src.Validation.validatorExaption;
+using DroneSystem.src.Validation.validateorAbstractClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DroneSystem.src.Validation
+namespace DroneSystem.src.Validation.validator
 {
 
 
@@ -54,16 +55,16 @@ namespace DroneSystem.src.Validation
                         ValidDrones.Add(drone);
                     }
                 }
-                catch (IdExaption ex) { Console.WriteLine(ex.Message + drone.id);}
-                catch (serialNumberExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (modelExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (categoryExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (base_locationExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (flightHoursExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (batteryHealthExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (maxRangeKmExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (missionsCompletedExaption ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (statusExaption ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (IdException ex) { Console.WriteLine(ex.Message + drone.id);}
+                catch (SerialNumberException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (ModelException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (CategoryException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (BaseLocationException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (FlightHoursException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (BatteryHealthException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (MaxRangeKmException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (MissionsCompletedException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (StatusException ex) { Console.WriteLine(ex.Message + drone.id); }
             }
             return ValidDrones;
         }
