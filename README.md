@@ -84,6 +84,7 @@
 
 //CreateReport = DroneSystem..src.Reporting
 
+// pipline = DroneSystem.src.Pipeline
 
 ## פירוק הבעיה לרכיבים 
 
