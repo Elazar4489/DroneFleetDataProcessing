@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DroneSystem.src.Exceptions.Validation
+namespace DroneSystem.src.Validation.validatorExaption
 {
     public class DroneException : Exception
     {

@@ -1,13 +1,13 @@
 ﻿using DroneSystem.src.Enums;
-using DroneSystem.src.Exceptions.Validation;
 using DroneSystem.src.Models;
+using DroneSystem.src.Validation.validatorExaption;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DroneSystem.src.Validation
+namespace DroneSystem.src.Validation.validateorAbstractClass
 {
     public interface IDroneValidationRule
     {
@@ -15,9 +15,9 @@ namespace DroneSystem.src.Validation
     }
     abstract class Validateor<TValue> : IDroneValidationRule
     {
-        public DroneExaption TheException { get; private set; }
+        public DroneException TheException { get; private set; }
         private readonly Func<Drone, TValue> _selector;
-        protected Validateor(Func<Drone, TValue> selector, DroneExaption droneExaption)
+        protected Validateor(Func<Drone, TValue> selector, DroneException droneExaption)
         {
             TheException = droneExaption; 
             _selector = selector;
@@ -51,7 +51,7 @@ namespace DroneSystem.src.Validation
     }
     class IdValidator : Validateor<int>
     {
-        public IdValidator() : base(drone => drone.id, new IdExaption()) { }
+        public IdValidator() : base(drone => drone.id, new IdException("")) { }
         public override bool Validate(int value)
         {
             var seenIds = new HashSet<int>();
@@ -64,7 +64,7 @@ namespace DroneSystem.src.Validation
     }
     class serialNumberValidator : Validateor<string>
     {
-        public serialNumberValidator() : base(drone => drone.serialNumber, new serialNumberExaption()) { }
+        public serialNumberValidator() : base(drone => drone.serialNumber, new SerialNumberException("")) { }
         public override bool Validate(string value)
         {
             string pattern = @"^DR-\d{4}$";
@@ -77,7 +77,7 @@ namespace DroneSystem.src.Validation
     }
     class modelValidator : Validateor<string>
     {
-        public modelValidator() : base(drone => drone.model, new modelExaption()) { }
+        public modelValidator() : base(drone => drone.model, new ModelException("")) { }
         public override bool Validate(string value)
         {
             if (string.IsNullOrWhiteSpace(value)){throw TheException;}
@@ -91,7 +91,7 @@ namespace DroneSystem.src.Validation
     }
     class categoryValidator : Validateor<string>
     {
-        public categoryValidator() : base(drone => drone.category, new categoryExaption()) { }
+        public categoryValidator() : base(drone => drone.category, new CategoryException("")) { }
         public override bool Validate(string value)
         {
             if (!EnumCheck< EnumsCategory>(value, out _))
@@ -103,7 +103,7 @@ namespace DroneSystem.src.Validation
     }
     class base_locationValidator : Validateor<string>
     {
-        public base_locationValidator() : base(drone => drone.base_location, new base_locationExaption()) { }
+        public base_locationValidator() : base(drone => drone.base_location, new BaseLocationException("")) { }
         public override bool Validate(string value)
         {
             if (!EnumCheck< EnumsBase_location>(value, out _))
@@ -115,7 +115,7 @@ namespace DroneSystem.src.Validation
     }
     class flightHoursValidator : Validateor<double>
     {
-        public flightHoursValidator() : base(drone => drone.flightHours, new flightHoursExaption()) { }
+        public flightHoursValidator() : base(drone => drone.flightHours, new FlightHoursException("")) { }
         public override bool Validate(double value)
         {
             if (!RangeDoubleCheck(0, 2500, value))
@@ -127,7 +127,7 @@ namespace DroneSystem.src.Validation
     }
     class batteryHealthValidator : Validateor<int>
     {
-        public batteryHealthValidator() : base(drone => drone.batteryHealth, new batteryHealthExaption()) { }
+        public batteryHealthValidator() : base(drone => drone.batteryHealth, new BatteryHealthException("")) { }
         public override bool Validate(int value)
         {
             if (!RangeCheck(0, 100, value))
@@ -139,7 +139,7 @@ namespace DroneSystem.src.Validation
     }
     class maxRangeKmValidator : Validateor<double>
     {
-        public maxRangeKmValidator() : base(drone => drone.maxRangeKm, new maxRangeKmExaption()) { }
+        public maxRangeKmValidator() : base(drone => drone.maxRangeKm, new MaxRangeKmException("")) { }
         public override bool Validate(double value)
         {
             if (!RangeDoubleCheck(1, 150, value))
@@ -151,7 +151,7 @@ namespace DroneSystem.src.Validation
     }
     class missionsCompletedValidator : Validateor<int>
     {
-        public missionsCompletedValidator() : base(drone => drone.missionsCompleted, new missionsCompletedExaption()) { }
+        public missionsCompletedValidator() : base(drone => drone.missionsCompleted, new MissionsCompletedException("")) { }
         public override bool Validate(int value)
         {
             if (!RangeCheck(0, 5000, value))
@@ -163,7 +163,7 @@ namespace DroneSystem.src.Validation
     }
     class statusValidator : Validateor<string>
     {
-        public statusValidator() : base(drone => drone.status, new statusExaption()) { }
+        public statusValidator() : base(drone => drone.status, new StatusException("")) { }
         public override bool Validate(string value)
         {
             if (!EnumCheck<DroneStatus>(value, out _))
@@ -175,7 +175,7 @@ namespace DroneSystem.src.Validation
     }
     class correctnessStatusValidator: Validateor<Drone>
     {
-        public correctnessStatusValidator():base(drone => drone, new statusExaption()) { }
+        public correctnessStatusValidator():base(drone => drone, new StatusException("")) { }
         public override bool Validate(Drone value)
         {
             if (value.batteryHealth < 20 && Enum.Parse<DroneStatus>(value.status, true) == DroneStatus.Operational)
