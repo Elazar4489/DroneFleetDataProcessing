@@ -12,6 +12,11 @@ namespace DroneSystem.src.Reporting
         public IEnumerable<Drone> NotOperationalDrones { get; set; }
         public IEnumerable<Drone> TopFlightHours { get; set; }
         public IEnumerable<string> UniqueModels { get; set; }
+        public IDictionary<string, int> NumDornesPerBase { get; set; }
+        public IDictionary<string, double> BatteryAvgPerModel { get; set; }
+        public IDictionary<string, int> TopModelMissionsCompleted { get; set; }
+        public IEnumerable<string> BasesWithOperationalAndBattery80 { get; set; }
+        public IDictionary<string, double> ThreeHighModelsPerAvgFlightHours { get; set; }
 
         public CreateReport(IEnumerable<Drone> cleanDrons)
         {
@@ -19,6 +24,11 @@ namespace DroneSystem.src.Reporting
             NotOperationalDrones = statical.GetNotOperationalDrones(cleanDrons);
             TopFlightHours = statical.GetTopFlightHours(cleanDrons);
             UniqueModels = statical.GetUniqueModels(cleanDrons);
+            NumDornesPerBase = statical.GetNumDornesPerBase(cleanDrons);
+            BatteryAvgPerModel = statical.GetBatteryAvgPerModel(cleanDrons);
+            TopModelMissionsCompleted = statical.GetTopModelMissionsCompleted(cleanDrons);
+            BasesWithOperationalAndBattery80 = statical.GetBasesWithOperationalAndBattery80(cleanDrons);
+            ThreeHighModelsPerAvgFlightHours = statical.GetThreeHighModelsPerAvgFlightHours(cleanDrons);
         }
 
         public void SaveData(IEnumerable<Drone> drones, string fileName)
