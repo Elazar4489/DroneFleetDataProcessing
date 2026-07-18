@@ -1,11 +1,14 @@
-﻿using DroneSystem.Models;
-using DroneSystem.Reception;
-using DroneSystem.Validation;
-using DroneSystem.Data.Persistence;
-using DroneSystem.Interfaces;
-using DroneSystem.Reception;
-using DroneSystem.Data.Persistence;
-using System;
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using DroneSystem.src.Models;
+using DroneSystem.src.Reception;
+using DroneSystem.src.Persistence;
+using DroneSystem.src.Reporting;
+using DroneSystem.src.Validation.validator;
+
+
 namespace DroneSystem.src.Pipeline
 {
     public class DataPipeline
@@ -16,17 +19,17 @@ namespace DroneSystem.src.Pipeline
             string myFilePath = Path.Combine(baseDirectory, "input", "raw", "drones_raw.json");
 
             var loader = new ReceptionDrone(myFilePath);
-            var drones = loader.LoadData();
+            var drones = loader.LoadData().ToList();
 
             var validator = new ValidatorDrone(drones);
-            var validDrones = validator.Validate();
+            validator.Validate();
+
+            var report = new CreateReport(validator.ValidDrones, validator.RejectedDrones);
+
+            report.SaveData(validator.ValidDrones, "report.txt");
 
             var saver = new CreateNewJson();
-            saver.SaveData(validDrones, "drones_clean.json");
-
-            var report = new CreateReport(validDrones);
-            report.SaveData(validDrones, "report.txt");
-
+            saver.SaveData(validator.ValidDrones, "drones_clean.json");
 
             Console.WriteLine("Pipeline completed successfully!");
         }

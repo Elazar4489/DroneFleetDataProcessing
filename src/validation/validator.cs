@@ -12,6 +12,8 @@ namespace DroneSystem.src.Validation.validator
 
     public class ValidatorDrone
     {
+        public List<Drone> ValidDrones { get; private set; } = new List<Drone>();
+        public List<Drone> RejectedDrones { get; private set; } = new List<Drone>();
         private readonly List<IDroneValidationRule> _allRules;
         public List<Drone> Drones { get; set; }
         public ValidatorDrone(List<Drone> drones)
@@ -45,7 +47,9 @@ namespace DroneSystem.src.Validation.validator
         }
         public List<Drone> Validate()
         {
-            List<Drone> ValidDrones = new List<Drone>();
+            ValidDrones.Clear();
+            RejectedDrones.Clear();
+
             foreach (Drone drone in Drones)
             {
                 try
@@ -54,17 +58,21 @@ namespace DroneSystem.src.Validation.validator
                     {
                         ValidDrones.Add(drone);
                     }
+                    else
+                    {
+                        RejectedDrones.Add(drone);
+                    }
                 }
-                catch (IdException ex) { Console.WriteLine(ex.Message + drone.id);}
-                catch (SerialNumberException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (ModelException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (CategoryException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (BaseLocationException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (FlightHoursException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (BatteryHealthException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (MaxRangeKmException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (MissionsCompletedException ex) { Console.WriteLine(ex.Message + drone.id); }
-                catch (StatusException ex) { Console.WriteLine(ex.Message + drone.id); }
+                catch (IdException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (SerialNumberException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (ModelException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (CategoryException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (BaseLocationException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (FlightHoursException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (BatteryHealthException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (MaxRangeKmException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (MissionsCompletedException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
+                catch (StatusException ex) { Console.WriteLine(ex.Message + drone.id); RejectedDrones.Add(drone); }
             }
             return ValidDrones;
         }
