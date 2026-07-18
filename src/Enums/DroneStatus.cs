@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DroneSystem.Enums
+namespace DroneSystem.src.Enums
 {
     public enum DroneStatus
     {
